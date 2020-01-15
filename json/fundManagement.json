@@ -1,0 +1,572 @@
+{
+	"swagger": "2.0",
+	"schemes" : ["https"],
+	"host": "developers.nonghyup.com",
+	"tags": [
+		{
+			"name": "3.금융조회"
+		}
+	],
+	"paths": {
+		"/InquireBalance.nh": {
+			"post": {
+				"tags": [
+					"3.금융조회"
+				],
+				"summary": "잔액조회",
+				"description": "핀-어카운트 연결계좌에 대한 잔액을 조회한다.",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "param",
+						"description": "param",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/InquireBalanceRequestData"
+						}
+					}
+				],
+				"responses": {
+					
+				},
+				"deprecated": false
+			}
+		},
+		"/InquireCreditCardAuthorizationHistory.nh": {
+			"post": {
+				"tags": [
+					"3.금융조회"
+				],
+				"summary": "개인카드 승인내역조회",
+				"description": "핀-카드에 연결된 개인카드의 승인내역을 조회한다.",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "param",
+						"description": "param",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/InquireCreditCardAuthorizationHistoryRequestData"
+						}
+					}
+				],
+				"responses": {
+					
+				},
+				"deprecated": false
+			}
+		},
+		"/InquireCashierCheck.nh": {
+			"post": {
+				"tags": [
+					"3.금융조회"
+				],
+				"summary": "자기앞수표조회",
+				"description": "자기앞수표의 상태를 조회한다.",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "param",
+						"description": "param",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/InquireCashierCheckRequestData"
+						}
+					}
+				],
+				"responses": {
+					
+				},
+				"deprecated": false
+			}
+		},
+		"/InquireExchangeRate.nh": {
+			"post": {
+				"tags": [
+					"3.금융조회"
+				],
+				"summary": "환율조회",
+				"description": "환율조회를 한다.",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "param",
+						"description": "param",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/InquireExchangeRateRequestData"
+						}
+					}
+				],
+				"responses": {
+					
+				},
+				"deprecated": false
+			}
+		}
+	},
+	"definitions": {
+		"InquireBalanceRequestData": {
+			"type": "object",
+			"required": [
+				"Header",
+				"FinAcno"
+			],
+			"properties": {
+				"Header": {
+					"$ref": "#/definitions/InquireBalanceHeader"
+				},
+				"FinAcno": {
+					"type": "string",
+					"example": "핀어카운트",
+					"description": "핀어카운트"
+				}
+			},
+			"title": "InquireBalanceRequestData"
+		},
+		"InquireTransactionHistoryRequestData": {
+			"type": "object",
+			"required": [
+				"Header",
+				"Bncd",
+				"Acno",
+				"Insymd",
+				"Ineymd",
+				"TrnsDsnc",
+				"Lnsq",
+				"PageNo",
+				"Dmcnt"
+			],
+			"properties": {
+				"Header": {
+					"$ref": "#/definitions/HeaderReceivedTransferA"
+				},
+				"Bncd": {
+					"type": "string",
+					"example": "은행코드",
+					"description": "은행코드"
+				},
+				"Acno": {
+					"type": "string",
+					"example": "계좌번호",
+					"description": "계좌번호"
+				},
+				"Insymd": {
+					"type": "string",
+					"example": "조회시작일자",
+					"description": "조회시작일자"
+				},
+				"Ineymd": {
+					"type": "string",
+					"example": "조회종료일자",
+					"description": "조회종료일자"
+				},
+				"TrnsDsnc": {
+					"type": "string",
+					"example": "A",
+					"description": "거래구분"
+				},
+				"Lnsq": {
+					"type": "string",
+					"example": "DESC",
+					"description": "정렬순서"
+				},
+				"PageNo": {
+					"type": "string",
+					"example": "1",
+					"description": "페이지번호"
+				},
+				"Dmcnt": {
+					"type": "string",
+					"example": "100",
+					"description": "요청건수"
+				}
+			},
+			"title": "InquireTransactionHistoryRequestData"
+		},
+		"InquireCreditCardAuthorizationHistoryRequestData": {
+			"type": "object",
+			"required": [
+				"Header",
+				"FinCard",
+				"IousDsnc",
+				"Insymd",
+				"Ineymd",
+				"PageNo",
+				"Dmcnt"
+			],
+			"properties": {
+				"Header": {
+					"$ref": "#/definitions/InquireCreditCardAuthorizationHistoryHeader"
+				},
+				"FinCard": {
+					"type": "string",
+					"example": "00829101234560000112345678919",
+					"description": "핀카드"
+				},
+				"IousDsnc": {
+					"type": "string",
+					"example": "1",
+					"description": "국내외사용구분"
+				},
+				"Insymd": {
+					"type": "string",
+					"example": "20191105",
+					"description": "조회시작일자"
+				},
+				"Ineymd": {
+					"type": "string",
+					"example": "20191109",
+					"description": "조회종료일자"
+				},
+				"PageNo": {
+					"type": "string",
+					"example": "1",
+					"description": "페이지번호"
+				},
+				"Dmcnt": {
+					"type": "string",
+					"example": "15",
+					"description": "요청건수"
+				}
+			},
+			"title": "InquireCreditCardAuthorizationHistoryRequestData"
+		},
+		"InquireCashierCheckRequestData": {
+			"type": "object",
+			"required": [
+				"Header",
+				"ChisBncd",
+				"CschNo",
+				"Psymd",
+				"CschCtblCd",
+				"ChisGicd",
+				"ChisBrcd",
+				"ChPvamt"
+			],
+			"properties": {
+				"Header": {
+					"$ref": "#/definitions/InquireCashierCheckHeader"
+				},
+				"ChisBncd": {
+					"type": "string",
+					"example": "011",
+					"description": "수표발행은행코드"
+				},
+				"CschNo": {
+					"type": "string",
+					"example": "10000001",
+					"description": "자기앞수표번호"
+				},
+				"Psymd": {
+					"type": "string",
+					"example": "20190425",
+					"description": "발행일자"
+				},
+				"CschCtblCd": {
+					"type": "string",
+					"example": "19",
+					"description": "자기앞수표권종코드"
+				},
+				"ChisGicd": {
+					"type": "string",
+					"example": "0110013",
+					"description": "수표발행지로코드"
+				},
+				"ChisBrcd": {
+					"type": "string",
+					"example": "000001",
+					"description": "수표발행지점코드"
+				},
+				"ChPvamt": {
+					"type": "string",
+					"example": "1200000",
+					"description": "수표액면금액"
+				}
+			},
+			"title": "InquireCashierCheckRequestData"
+		},
+		"InquireExchangeRateRequestData": {
+			"type": "object",
+			"required": [
+				"Header",
+				"Btb",
+				"Crcd",
+				"Inymd"
+			],
+			"properties": {
+				"Header": {
+					"$ref": "#/definitions/InquireExchangeRateHeader"
+				},
+				"Btb": {
+					"type": "string",
+					"example": "0001",
+					"description": "고시회차"
+				},
+				"Crcd": {
+					"type": "string",
+					"example": "USD",
+					"description": "통화코드"
+				},
+				"Inymd": {
+					"type": "string",
+					"example": "20191213",
+					"description": "조회일"
+				}
+			},
+			"title": "InquireExchangeRateRequestData"
+		},
+		"InquireBalanceHeader": {
+			"type": "object",
+			"required": [
+				"AccessToken",
+				"ApiNm",
+				"ApiSvcCd",
+				"FintechApsno",
+				"IsTuno",
+				"Iscd",
+				"Trtm",
+				"Tsymd"
+			],
+			"properties": {
+				"ApiNm": {
+					"type": "string",
+					"example": "InquireBalance",
+					"description": "API명"
+				},
+				"Tsymd": {
+					"type": "string",
+					"example": "오늘날짜를입력하세요",
+					"description": "전송일자"
+				},
+				"Trtm": {
+					"type": "string",
+					"example": "112428",
+					"description": "전송시각"
+				},
+				"Iscd": {
+					"type": "string",
+					"example": "기관코드를입력하세요",
+					"description": "기관코드"
+				},
+				"FintechApsno": {
+					"type": "string",
+					"example": "001",
+					"description": "핀테크앱일련번호"
+				},
+				"ApiSvcCd": {
+					"type": "string",
+					"example": "ReceivedTransferA",
+					"description": "API서비스코드"
+				},
+				"IsTuno": {
+					"type": "string",
+					"example": "0000",
+					"description": "기관 거래고유번호"
+				},
+				"AccessToken": {
+					"type": "string",
+					"example": "인증키를입력하세요",
+					"description": "접근토큰"
+				}
+			},
+			"title": "InquireBalanceHeader",
+			"description": "공통부"
+		},
+		"InquireCreditCardAuthorizationHistoryHeader": {
+			"type": "object",
+			"required": [
+				"AccessToken",
+				"ApiNm",
+				"ApiSvcCd",
+				"FintechApsno",
+				"IsTuno",
+				"Iscd",
+				"Trtm",
+				"Tsymd"
+			],
+			"properties": {
+				"ApiNm": {
+					"type": "string",
+					"example": "InquireCreditCardAuthorizationHistory",
+					"description": "API명"
+				},
+				"Tsymd": {
+					"type": "string",
+					"example": "오늘날짜를입력하세요",
+					"description": "전송일자"
+				},
+				"Trtm": {
+					"type": "string",
+					"example": "112428",
+					"description": "전송시각"
+				},
+				"Iscd": {
+					"type": "string",
+					"example": "기관코드를입력하세요",
+					"description": "기관코드"
+				},
+				"FintechApsno": {
+					"type": "string",
+					"example": "001",
+					"description": "핀테크앱일련번호"
+				},
+				"ApiSvcCd": {
+					"type": "string",
+					"example": "CardInfo",
+					"description": "API 서비스코드"
+				},
+				"IsTuno": {
+					"type": "string",
+					"example": "0000",
+					"description": "기관 거래고유번호"
+				},
+				"AccessToken": {
+					"type": "string",
+					"example": "인증키를입력하세요",
+					"description": "접근토큰"
+				}
+			},
+			"title": "InquireCreditCardAuthorizationHistoryHeader",
+			"description": "공통부"
+		},
+		"InquireExchangeRateHeader": {
+			"type": "object",
+			"required": [
+				"AccessToken",
+				"ApiNm",
+				"ApiSvcCd",
+				"FintechApsno",
+				"IsTuno",
+				"Iscd",
+				"Trtm",
+				"Tsymd"
+			],
+			"properties": {
+				"ApiNm": {
+					"type": "string",
+					"example": "InquireExchangeRate",
+					"description": "API명"
+				},
+				"Tsymd": {
+					"type": "string",
+					"example": "오늘날짜를입력하세요",
+					"description": "전송일자"
+				},
+				"Trtm": {
+					"type": "string",
+					"example": "112428",
+					"description": "전송시각"
+				},
+				"Iscd": {
+					"type": "string",
+					"example": "기관코드를입력하세요",
+					"description": "기관코드"
+				},
+				"FintechApsno": {
+					"type": "string",
+					"example": "001",
+					"description": "핀테크앱일련번호"
+				},
+				"ApiSvcCd": {
+					"type": "string",
+					"example": "DrawingTransferA",
+					"description": "API서비스코드"
+				},
+				"IsTuno": {
+					"type": "string",
+					"example": "0000",
+					"description": "기관 거래고유번호"
+				},
+				"AccessToken": {
+					"type": "string",
+					"example": "인증키를입력하세요",
+					"description": "접근토큰"
+				}
+			},
+			"title": "InquireExchangeRateHeader",
+			"description": "공통부"
+		},
+		"InquireCashierCheckHeader": {
+			"type": "object",
+			"required": [
+				"AccessToken",
+				"ApiNm",
+				"ApiSvcCd",
+				"FintechApsno",
+				"IsTuno",
+				"Iscd",
+				"Trtm",
+				"Tsymd"
+			],
+			"properties": {
+				"ApiNm": {
+					"type": "string",
+					"example": "InquireCashierCheck",
+					"description": "API명"
+				},
+				"Tsymd": {
+					"type": "string",
+					"example": "오늘날짜를입력하세요",
+					"description": "전송일자"
+				},
+				"Trtm": {
+					"type": "string",
+					"example": "112428",
+					"description": "전송시각"
+				},
+				"Iscd": {
+					"type": "string",
+					"example": "기관코드를입력하세요",
+					"description": "기관코드"
+				},
+				"FintechApsno": {
+					"type": "string",
+					"example": "001",
+					"description": "핀테크앱일련번호"
+				},
+				"ApiSvcCd": {
+					"type": "string",
+					"example": "DrawingTransferA",
+					"description": "API서비스코드"
+				},
+				"IsTuno": {
+					"type": "string",
+					"example": "0000",
+					"description": "기관 거래고유번호"
+				},
+				"AccessToken": {
+					"type": "string",
+					"example": "인증키를입력하세요",
+					"description": "접근토큰"
+				}
+			},
+			"title": "InquireCashierCheckHeader",
+			"description": "공통부"
+		}
+	}
+}
