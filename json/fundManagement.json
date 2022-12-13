@@ -8,6 +8,66 @@
 		}
 	],
 	"paths": {
+			"/InquireDepositorAccountNumber.nh": {
+			"post": {
+				"tags": [
+					"3.금융조회"
+				],
+				"summary": "예금주조회",
+				"description": "핀-어카운트 연결계좌에 대한 예금주명을 조회한다.",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "param",
+						"description": "param",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/InquireDepositorFinAccountRequestData"
+						}
+					}
+				],
+				"responses": {
+					
+				},
+				"deprecated": false
+			}
+		},
+		"/InquireDepositorOtherBank.nh": {
+			"post": {
+				"tags": [
+					"3.금융조회"
+				],
+				"summary": "타행예금주조회",
+				"description": "계좌에 대한 예금주명을 조회한다.",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "param",
+						"description": "param",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/InquireDepositorOtherBankRequestData"
+						}
+					}
+				],
+				"responses": {
+					
+				},
+				"deprecated": false
+			}
+		},
 		"/InquireBalance.nh": {
 			"post": {
 				"tags": [
@@ -130,6 +190,54 @@
 		}
 	},
 	"definitions": {
+		"InquireDepositorFinAccountRequestData": {
+			"type": "object",
+			"required": [
+				"Header",
+				"Bncd",
+				"Acno"
+			],
+			"properties": {
+				"Header": {
+					"$ref": "#/definitions/InquireDepositorAccountNumberHeader"
+				},
+				"Bncd": {
+					"type": "string",
+					"example": "은행코드를입력하세요",
+					"description": "은행코드"
+				},
+				"Acno": {
+					"type": "string",
+					"example": "계좌번호를입력하세요",
+					"description": "계좌번호"
+				}
+			},
+			"title": "InquireDepositorFinAccountRequestData"
+		},
+		"InquireDepositorOtherBankRequestData": {
+			"type": "object",
+			"required": [
+				"Header",
+				"Bncd",
+				"Acno"
+			],
+			"properties": {
+				"Header": {
+					"$ref": "#/definitions/InquireDepositorOtherBankHeader"
+				},
+				"Bncd": {
+					"type": "string",
+					"example": "은행코드를입력하세요",
+					"description": "은행코드"
+				},
+				"Acno": {
+					"type": "string",
+					"example": "계좌번호를입력하세요",
+					"description": "계좌번호"
+				}
+			},
+			"title": "InquireDepositorOtherBankRequestData"
+		},
 		"InquireBalanceRequestData": {
 			"type": "object",
 			"required": [
@@ -566,6 +674,120 @@
 				}
 			},
 			"title": "InquireCashierCheckHeader",
+			"description": "공통부"
+		},
+		"InquireDepositorAccountNumberHeader": {
+			"type": "object",
+			"required": [
+				"AccessToken",
+				"ApiNm",
+				"ApiSvcCd",
+				"FintechApsno",
+				"IsTuno",
+				"Iscd",
+				"Trtm",
+				"Tsymd"
+			],
+			"properties": {
+				"ApiNm": {
+					"type": "string",
+					"example": "InquireDepositorAccountNumber",
+					"description": "API명"
+				},
+				"Tsymd": {
+					"type": "string",
+					"example": "오늘날짜를입력하세요",
+					"description": "전송일자"
+				},
+				"Trtm": {
+					"type": "string",
+					"example": "112428",
+					"description": "전송시각"
+				},
+				"Iscd": {
+					"type": "string",
+					"example": "기관코드를입력하세요",
+					"description": "기관코드"
+				},
+				"FintechApsno": {
+					"type": "string",
+					"example": "001",
+					"description": "핀테크앱일련번호"
+				},
+				"ApiSvcCd": {
+					"type": "string",
+					"example": "DrawingTransferA",
+					"description": "API서비스코드"
+				},
+				"IsTuno": {
+					"type": "string",
+					"example": "0000",
+					"description": "기관 거래고유번호"
+				},
+				"AccessToken": {
+					"type": "string",
+					"example": "인증키를입력하세요",
+					"description": "접근토큰"
+				}
+			},
+			"title": "InquireDepositorAccountNumberHeader",
+			"description": "공통부"
+		},
+		"InquireDepositorOtherBankHeader": {
+			"type": "object",
+			"required": [
+				"AccessToken",
+				"ApiNm",
+				"ApiSvcCd",
+				"FintechApsno",
+				"IsTuno",
+				"Iscd",
+				"Trtm",
+				"Tsymd"
+			],
+			"properties": {
+				"ApiNm": {
+					"type": "string",
+					"example": "InquireDepositorOtherBank",
+					"description": "API명"
+				},
+				"Tsymd": {
+					"type": "string",
+					"example": "오늘날짜를입력하세요",
+					"description": "전송일자"
+				},
+				"Trtm": {
+					"type": "string",
+					"example": "112428",
+					"description": "전송시각"
+				},
+				"Iscd": {
+					"type": "string",
+					"example": "기관코드를입력하세요",
+					"description": "기관코드"
+				},
+				"FintechApsno": {
+					"type": "string",
+					"example": "001",
+					"description": "핀테크앱일련번호"
+				},
+				"ApiSvcCd": {
+					"type": "string",
+					"example": "DrawingTransferA",
+					"description": "API서비스코드"
+				},
+				"IsTuno": {
+					"type": "string",
+					"example": "0000",
+					"description": "기관 거래고유번호"
+				},
+				"AccessToken": {
+					"type": "string",
+					"example": "인증키를입력하세요",
+					"description": "접근토큰"
+				}
+			},
+			"title": "InquireDepositorOtherBankHeader",
 			"description": "공통부"
 		}
 	}
